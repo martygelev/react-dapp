@@ -1,13 +1,20 @@
-const hre = require("hardhat");
+const hardhat = require("hardhat");
 
 async function main() {
  
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
+  const Greeter = await hardhat.ethers.getContractFactory("Greeter");
   const greeter = await Greeter.deploy("Hello, Hardhat!");
 
   await greeter.deployed();
 
   console.log("Greeter deployed to:", greeter.address);
+
+  const Token = await hardhat.ethers.getContractFactory("Token");
+  const token = await Token.deploy();
+
+  await token.deployed();
+
+  console.log("Token contract deployed to: ", token.address);
 }
 
 main()
